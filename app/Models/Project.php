@@ -14,4 +14,7 @@ class Project extends Model
         "deadline",
         "type_id"
     ];
+    public function type() {
+        return $this->belongsTo(Type::class);
+    }
 }
