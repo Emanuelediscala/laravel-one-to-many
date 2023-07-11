@@ -18,10 +18,10 @@ class ProjectSeeder extends Seeder
     
         public function run(Faker $faker)
     {
-        for ($i=0;  $i <10 ; $i+1) { 
+        for ($i=0;  $i<10; $i++) { 
             $project = new Project();
             $project -> title = $faker -> sentence(3);
-            $project -> content = $faker -> sentence(100);
+            $project -> content = $faker -> sentence(10);
             $project -> deadline = $faker -> date($format = "Y-m-d", $max="now");
             $project -> save();
         }

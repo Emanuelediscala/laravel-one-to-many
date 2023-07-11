@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('projects', function (Blueprint $table) {
-            $table->id();
-            $table->string("title", 160)->unique();
-            $table->text("content")->nullable();
-            $table->date("deadline")->nullable();
-            $table->timestamps();
+        Schema::table('projects', function (Blueprint $table) {
+            $table->foreignID('type_id')->nullable()->constrained(); 
         });
     }
 
@@ -29,6 +25,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('projects');
+        Schema::table('projects', function (Blueprint $table) {
+            $table->dropForeign("projects_type_id_foreign");
+            $table->dropColumn("type_id");
+        });
     }
 };

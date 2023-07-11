@@ -55,6 +55,11 @@
                                     <i class="fa-solid fa-list-alt fa-lg fa-fw"></i> Lista prodotti
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{{route('admin.projects.create')}}">
+                                    <i class="fa-solid fa-plus fa-lg fa-fw"></i> Aggiungi Prodotto
+                                </a>
+                            </li>
                         </ul>
 
                     </div>

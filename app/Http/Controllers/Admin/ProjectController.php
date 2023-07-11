@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Http\Controllers\Controller;
+use App\Models\Type;
 
 class ProjectController extends Controller
 {
@@ -18,7 +19,7 @@ class ProjectController extends Controller
     {
         $projects = Project::all();
 
-        return view("admin.project.index", compact("projects"));
+        return view("admin.projects.index", compact("projects"));
     }
 
     /**
@@ -27,8 +28,9 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        $types = Type::all();
+        return view("admin.projects.create",compact("types"));
     }
 
     /**
@@ -39,7 +41,13 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $newProject = new Project();
+        $newProject->fill($data);
+        $newProject->save();
+
+        return to_route("admin.projects.show", $newProject);
     }
 
     /**
@@ -49,8 +57,9 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Project $project)
-    {
-        //
+    {   
+        
+        return view("admin.projects.show",compact("project"));
     }
 
     /**
